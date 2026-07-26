@@ -1,0 +1,30 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+issueTrackerURL="https://github.com/Mrbysco/SoundMimicry/issues"
+license="LGPL-3.0"
+
+[[mods]]
+modId="sharedechest"
+logoFile="assets/sharedechest/icon.png"
+version="${file.jarVersion}"
+displayName="Shared Ender Chest"
+displayURL="https://www.curseforge.com/minecraft/mc-mods/shared-ender-chest"
+authors="ColdLavaLamp, Mrbysco"
+description='''
+Adds a tab to the ender chest that everyone can access.
+'''
+
+[[dependencies.sharedechest]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1,1.22)"
+ordering="NONE"
+side="BOTH"
+[[dependencies.sharedechest]]
+modId="neoforge"
+type="required"
+versionRange="[21.1.1,)"
+ordering="NONE"
+side="BOTH"
+[[mixins]]
+config="sharedechest.mixins.json"

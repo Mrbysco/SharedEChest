@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "sharedechest",
+  "version": "${version}",
+  "name": "Shared Ender Chest",
+  "description": "Adds a tab to the ender chest that everyone can access.",
+  "authors": [
+    "ColdLavaLamp",
+    "Mrbysco"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/shared-ender-chest",
+    "sources": "https://github.com/Mrbysco/SharedEChest",
+    "issues": "https://github.com/Mrbysco/SharedEChest/issues"
+  },
+  "license": "LGPL-3.0",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "easton.sharedechest.SharedEChest"
+    ],
+    "client": [
+      "easton.sharedechest.SharedEChestClient"
+    ]
+  },
+  "mixins": [
+    "sharedechest.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.15.11",
+    "minecraft": "~1.21",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
+
