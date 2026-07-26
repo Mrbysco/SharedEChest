@@ -13,7 +13,7 @@ public class SharedEChest implements ModInitializer {
 	public void onInitialize() {
 		CommonClass.init();
 
-		PayloadTypeRegistry.playC2S().register(SharedButtonPayload.ID, SharedButtonPayload.CODEC);
+		PayloadTypeRegistry.serverboundPlay().register(SharedButtonPayload.ID, SharedButtonPayload.CODEC);
 
 		ServerPlayNetworking.registerGlobalReceiver(SharedButtonPayload.ID, (payload, context) -> {
 			Player player = context.player();

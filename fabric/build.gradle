@@ -2,7 +2,7 @@ plugins {
     id 'java'
     id 'idea'
     id 'maven-publish'
-    id 'fabric-loom' version '1.16-SNAPSHOT'
+    id "net.fabricmc.fabric-loom" version '1.17-SNAPSHOT'
     id 'net.darkhax.curseforgegradle'
     id 'com.modrinth.minotaur'
 }
@@ -11,27 +11,14 @@ base {
     archivesName = "${mod_name}-fabric-${minecraft_version}"
 }
 
-repositories {
-    maven {
-        url "https://maven.shedaniel.me/"
-    }
-    maven {
-        url "https://maven.terraformersmc.com/"
-        content {
-            includeGroup "com.terraformersmc"
-        }
-    }
-}
-
 dependencies {
     minecraft "com.mojang:minecraft:${minecraft_version}"
-    mappings loom.officialMojangMappings()
-    modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
+    implementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
+    implementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
     implementation project(":common")
 
-    modApi("fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${forge_config_api_version}")
-    modImplementation("com.terraformersmc:modmenu:${mod_menu_version}"){
+    api("fuzs.forgeconfigapiport:forgeconfigapiport-fabric:${forge_config_api_version}")
+    implementation("com.terraformersmc:modmenu:${mod_menu_version}"){
         exclude(group: "eu.pb4")
     }
 }
@@ -41,9 +28,6 @@ loom {
         accessWidenerPath.set(file("src/main/resources/${mod_id}.accesswidener"))
     }
 
-    mixin {
-        defaultRefmapName.set("${mod_id}.refmap.json")
-    }
     runs {
         client {
             client()
@@ -101,11 +85,11 @@ if (System.getenv().CURSEFORGE_KEY) {
     task curseforge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge) {
         apiToken = System.getenv().CURSEFORGE_KEY
 
-        def mainFile = upload(project.curseforge_id, remapJar)
+        def mainFile = upload(project.curseforge_id, jar)
         mainFile.releaseType = 'release'
         mainFile.addGameVersion "Fabric"
         mainFile.addGameVersion "${minecraft_version}"
-        mainFile.addGameVersion "Java 21"
+        mainFile.addGameVersion "Java 25"
         mainFile.addGameVersion('Server', 'Client')
 
         mainFile.changelog = file("$project.rootDir/changelog.md")
@@ -124,7 +108,7 @@ if (System.getenv().MODRINTH_KEY) {
         versionType = "release"
         versionName = "${mod_name} ${minecraft_version}"
         versionNumber = project.version
-        uploadFile = remapJar
+        uploadFile = jar
         changelog = fileContents
         gameVersions = ["${minecraft_version}"]
         loaders = ["fabric"]

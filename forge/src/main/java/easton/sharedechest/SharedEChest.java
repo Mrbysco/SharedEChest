@@ -1,9 +1,7 @@
 package easton.sharedechest;
 
-import easton.sharedechest.client.ClientHandler;
 import easton.sharedechest.handlers.ServerPayloadHandler;
 import easton.sharedechest.payload.SharedButtonPayload;
-import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
@@ -12,14 +10,10 @@ import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 @Mod(Constants.MOD_ID)
 public class SharedEChest {
 
-	public SharedEChest(IEventBus eventBus, Dist dist) {
+	public SharedEChest(IEventBus eventBus) {
 		CommonClass.init();
 
 		eventBus.addListener(this::setupPackets);
-
-		if (dist.isClient()) {
-			eventBus.addListener(ClientHandler::registerMenuScreen);
-		}
 	}
 
 	private void setupPackets(final RegisterPayloadHandlersEvent event) {

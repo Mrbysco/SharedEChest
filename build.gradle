@@ -1,7 +1,7 @@
 plugins {
     // Required for NeoGradle
     id "org.jetbrains.gradle.plugin.idea-ext" version "1.3"
-    id "net.darkhax.curseforgegradle" version "1.1.28" apply(false)
+    id "net.darkhax.curseforgegradle" version "1.3.33" apply(false)
     id "com.modrinth.minotaur" version "2.+" apply(false)
     id 'com.matyrobbrt.mc.registrationutils' version "${reg_version}"
 }
@@ -18,7 +18,7 @@ registrationUtils {
 subprojects {
     apply plugin: 'java'
 
-    java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+    java.toolchain.languageVersion = JavaLanguageVersion.of(25)
     java.withJavadocJar()
     java.withSourcesJar()
 
@@ -58,11 +58,23 @@ subprojects {
             name = "Fuzs Mod Resources"
             url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
         }
+        maven {
+            url "https://maven.gnomecraft.net/releases"
+            content {
+                includeGroup "com.terraformersmc"
+            }
+        }
+        maven {
+            url "https://maven.terraformersmc.com/"
+            content {
+                includeGroup "com.terraformersmc"
+            }
+        }
     }
 
     tasks.withType(JavaCompile).configureEach {
         it.options.encoding = 'UTF-8'
-        it.options.getRelease().set(21)
+        it.options.getRelease().set(25)
     }
 
     tasks.withType(AbstractTestTask).configureEach {
