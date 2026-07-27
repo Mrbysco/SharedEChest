@@ -7,7 +7,7 @@ plugins {
 }
 
 registrationUtils {
-    group "dev.chococraft.registration"
+    group "easton.sharedechest.registration"
     projects {
         Common { type 'common'; project ':common' }
         Fabric { type 'fabric'; project ':fabric' }
