@@ -3,8 +3,8 @@ package easton.sharedechest.registry;
 import easton.sharedechest.Constants;
 import easton.sharedechest.menu.SharedEnderChestMenu;
 import easton.sharedechest.platform.Services;
-import dev.chococraft.registration.RegistrationProvider;
-import dev.chococraft.registration.RegistryObject;
+import easton.sharedechest.registration.RegistrationProvider;
+import easton.sharedechest.registration.RegistryObject;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.inventory.MenuType;
 
